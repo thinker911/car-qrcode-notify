@@ -6,7 +6,7 @@ addEventListener('fetch', event => {
 });
 
 //防止被滥用，在添加车辆信息时需要用来鉴权
-const API_KEY = "sk-@Admin123";
+const API_KEY = "AoN911305";
 const notifyMessage = "您好，有人需要您挪车，请及时处理。";
 const sendSuccessMessage = "您好，我已收到你的挪车通知，我正在赶来的路上，请稍等片刻！";
 //300秒内可发送5次通知
@@ -18,7 +18,7 @@ const rateLimitMessage = "我正在赶来的路上,请稍等片刻~~~";
 //通知类型，其他的通知类型可自行实现
 const notifyTypeMap = [
     { "id": "1", "name": "WxPusher", "functionName": wxpusher, "tip": "\r\nAT_xxxxxx|UID_xxxxxx" },
-    { "id": "2", "name": "Bark", "functionName": bark, "tip": "\r\ntoken|soundName\r\n\r\n注：token为xxxxxx代表的值，直接输入该值即可，请勿输入完整链接（https://api.day.app/xxxxxx），soundName为铃声名称（默认使用：multiwayinvitation），如需自定义铃声需要把铃声文件先上传到BarkApp" },
+    { "id": "2", "name": "Bark", "functionName": bark, "tip": "\r\ntoken|sound|group|icon\r\n\r\n注：token为xxxxxx代表的值，直接输入该值即可，请勿输入完整链接（https://api.day.app/xxxxxx），soundName为铃声名称（默认使用：multiwayinvitation），如需自定义铃声需要把铃声文件先上传到BarkApp" },
     { "id": "3", "name": "飞书机器人", "functionName": feishu, "tip": "\r\ntoken\r\n\r\n注：token为xxxxxx代表的值，直接输入该值即可，请勿输入完整链接（https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxx）" },
     { "id": "4", "name": "企业微信机器人", "functionName": weixin, "tip": "\r\ntoken\r\n\r\n注：token为xxxxxx代表的值，直接输入该值即可，请勿输入完整链接（https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxx）" },
     { "id": "5", "name": "钉钉机器人", "functionName": dingtalk, "tip": "\r\ntoken\r\n\r\n注：token为xxxxxx代表的值，直接输入该值即可，请勿输入完整链接（https://oapi.dingtalk.com/robot/send?access_token=xxxxxx）" },
@@ -946,13 +946,13 @@ async function index2(id) {
     <body>
       <div class="container">
         <div class="car-icon">🚗</div>
-        <h1>温馨提示</h1>
-        <p>不好意思阻碍到您的出行了<br>请通过以下方式联系我，我会立即前来挪车</p>
+        <h1>临时停靠 ★ 请多关照</h1>
+        <p>请通过以下留言方式通知我，我会立即前来挪车<br>★请留下你的手机号★</p>
         <div class="button-group hide-notify">
-            <textarea rows="5" id="notifyMessage" placeholder="给车主留言">车主，有人需要您挪车，请及时处理一下哦。</textarea>
+            <textarea rows="5" id="notifyMessage" placeholder="给车主留言">车主，有人需要您挪车，请及时处理一下哦。        ★请留下你的手机号★</textarea>
         </div>        
         <div class="button-group hide-notify">
-          <button class="action-btn" data-msg="车主，有人需要您挪车，请及时处理一下哦。">
+          <button class="action-btn" data-msg="车主，有人需要您挪车，请及时处理一下哦        ★请留下你的手机号★">
             <span>挪车</span>
           </button>
           <button class="action-btn" data-msg="车主，您爱车的车窗未关，请及时处理一下哦。">
@@ -969,7 +969,7 @@ async function index2(id) {
         </div>
         <div class="button-group">
           <button class="notify-btn hide-notify" onclick="notifyOwner()">
-            <span>微信通知</span> 📱
+            <span>通知车主</span> 📱
           </button>
           <button class="call-btn hide-call" onclick="callOwner()">
             <span>电话联系</span> 📞
@@ -1720,12 +1720,15 @@ async function wxpusher(token, message) {
 
 async function bark(token, message) {
     const tokens = token.split('|');
-    const reqUrl = 'https://api.day.app/push';
+    const reqUrl = 'https://api-bark.thinker911.top/push';
     const jsonBody = {
         "body": message,
         "title": "挪车通知",
         "device_key": tokens[0] || "",
-        "sound": tokens[1] || "multiwayinvitation",
+        "sound": tokens[1] || "choo",
+        "level": tokens[2] || "choo",
+        "group": tokens[3] || "nuoche",
+        "icon": tokens[4] || "https://i.postimg.cc/BQbWhFDs/wei-xin-nuo-che.png",
         "group": "挪车通知",
         "call": "1"
     }
