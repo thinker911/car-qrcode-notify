@@ -85,7 +85,7 @@ async function handleRequest(request) {
             else {
                 const style = url.searchParams.get("style") || "1";
                 const id = url.searchParams.get("id") || "";
-                return style == "2" ? await index2(id) : await index1(id);
+                return style == "2" ? await index1(id) : await index2(id);
             }
         }
     } catch (error) {
@@ -1726,9 +1726,8 @@ async function bark(token, message) {
         "title": "挪车通知",
         "device_key": tokens[0] || "",
         "sound": tokens[1] || "choo",
-        "level": tokens[2] || "choo",
-        "group": tokens[3] || "nuoche",
-        "icon": tokens[4] || "https://i.postimg.cc/BQbWhFDs/wei-xin-nuo-che.png",
+        "group": tokens[2] || "nuoche",
+        "icon": tokens[3] || "https://i.postimg.cc/BQbWhFDs/wei-xin-nuo-che.png",
         "group": "挪车通知",
         "call": "1"
     }
