@@ -949,10 +949,10 @@ async function index2(id) {
         <h1>临时停靠 ★ 请多关照</h1>
         <p>请通过以下留言方式通知我，我会立即前来挪车<br>★请留下你的手机号★</p>
         <div class="button-group hide-notify">
-            <textarea rows="5" id="notifyMessage" placeholder="给车主留言">车主，有人需要您挪车，请及时处理一下哦。        ★请留下你的手机号★</textarea>
+            <textarea rows="5" id="notifyMessage" placeholder="给车主留言">车主，有人需要您挪车，请及时处理一下哦        ★请留下你的手机号，我会联系你★</textarea>
         </div>        
         <div class="button-group hide-notify">
-          <button class="action-btn" data-msg="车主，有人需要您挪车，请及时处理一下哦        ★请留下你的手机号★">
+          <button class="action-btn" data-msg="车主，有人需要您挪车，请及时处理一下哦        ★请留下你的手机号，我会联系你★">
             <span>挪车</span>
           </button>
           <button class="action-btn" data-msg="车主，您爱车的车窗未关，请及时处理一下哦。">
